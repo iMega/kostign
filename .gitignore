@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Build output: dist/ is the Astro build, build/ the archive CI uploads
+dist/
+build/
+.astro/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local tooling
+.claude/settings.local.json

@@ -1,0 +1,91 @@
+name: ci
+
+# main -> https://<domain> (environment production),
+# pull request -> https://test.<domain> (environment test).
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # Site address from repository variables, per target environment.
+      - name: Build
+        env:
+          SITE_URL: ${{ github.event_name == 'push' && vars.SITE_URL || vars.SITE_TEST_URL }}
+        run: make build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: build/site.tar.gz
+          if-no-files-found: error
+
+  # Enabled by the repository variable DEPLOY_ENABLED=true once the server
+  # is provisioned from mygarage-infra. Pull requests share test.<domain>:
+  # it shows the one updated last. Pull requests from forks get no secrets
+  # and are not deployed.
+  deploy:
+    needs: build
+    if: >-
+      vars.DEPLOY_ENABLED == 'true' &&
+      (github.event_name == 'push' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    environment: ${{ github.event_name == 'push' && 'production' || 'test' }}
+    concurrency:
+      group: deploy-${{ github.event_name == 'push' && 'production' || 'test' }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-${{ github.sha }}
+          path: build
+
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      # The key of the environment fixes where the release goes; the server
+      # only accepts "deploy <sha>", "rollback [<sha>]" and "status".
+      - name: Publish
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        # SHA is expanded locally on purpose.
+        run: |
+          # shellcheck disable=SC2029
+          ssh "site@$HOST" deploy "$SHA" < build/site.tar.gz
+
+      - name: Release state
+        if: always()
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          {
+            echo '```'
+            ssh "site@$HOST" status
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
