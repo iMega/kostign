@@ -10,7 +10,7 @@
 ## Устройство
 
 ```
-src/pages/         [lang]/index.astro → /ru/, /en/, /el/; index.astro — переход на /ru/
+src/pages/         [lang]/index.astro → /ru/, /en/, /el/; index.astro — переход на /en/ (defaultLanguage в src/lib/i18n.ts)
 src/layouts/       общий шаблон: canonical, hreflang, JSON-LD, тема
 src/components/    блоки страницы; icons/ — встроенные SVG
 src/data/translations/  тексты по языкам; ru.json — эталон, ключи en/el сверяются при сборке
