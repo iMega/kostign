@@ -18,7 +18,7 @@ src/lib/           языки (i18n.ts), контакты (contact.ts), JSON-LD 
 src/scripts/       клиентский скрипт: раскрывает раздел, на который ведёт ссылка
 src/styles/        стили: цвета OKLCH; тёмная тема по настройке системы (prefers-color-scheme)
 .stylelintrc.json  stylelint-config-standard, классы kebab-case или BEM
-public/            файлы, копируемые в сборку как есть (favicon, assets/)
+public/            файлы, копируемые в сборку как есть (favicon.svg и favicon.ico из него, assets/)
 astro.config.mjs   статическая сборка, формат directory
 .nvmrc             версия Node для CI и локально (Astro 7: Node ≥ 22.23.4)
 Makefile           dev, lint, build (dist/ → build/site.tar.gz), check, preview

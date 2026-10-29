@@ -31,6 +31,8 @@ const alternates = site && [
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
     {alternates && alternates.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+    <!-- .ico for browsers and tools without SVG icons; the rest take the SVG. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script type="application/ld+json" set:html={autoRepairJsonLd(site)} />
     <EventScript />
