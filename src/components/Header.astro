@@ -1,5 +1,6 @@
 ---
 import { getTranslations, languagePath, languages, type Language } from "../lib/i18n";
+import EventIcons from "./EventIcons.astro";
 
 interface Props {
   lang: Language;
@@ -11,8 +12,11 @@ const t = getTranslations(lang);
 
 <header class="site-header">
   <a class="brand" href={languagePath(lang)}>
-    <span class="brand__line">Kostas</span>
-    <span class="brand__line">Ignatiadis</span>
+    <span class="brand__name">
+      <span class="brand__line">Kostas</span>
+      <span class="brand__line">Ignatiadis</span>
+    </span>
+    <EventIcons />
   </a>
   <div class="site-header__actions">
     <nav class="languages" aria-label={t.header.languages}>

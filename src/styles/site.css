@@ -3,7 +3,7 @@
 }
 
 html {
-  --yellow: oklch(88.48% 0.1816 94.9deg);
+  --accent: oklch(88.48% 0.1816 94.9deg); /* yellow; holidays swap it, see Holidays */
   --ink: oklch(17.76% 0 0deg);
   --paper: oklch(100% 0 0deg);
   --chalk: oklch(97.83% 0.004 106.47deg);
@@ -11,7 +11,7 @@ html {
   --fg: var(--ink);
   --line: var(--fg);
   --button-bg: var(--ink);
-  --button-text: var(--yellow);
+  --button-text: var(--accent);
   --footer-bg: oklch(13.98% 0 0deg);
   --footer-text: var(--paper);
   --border: 0.1875rem solid var(--line); /* 3px */
@@ -25,7 +25,7 @@ html {
   html {
     --bg: var(--ink);
     --fg: var(--chalk);
-    --button-bg: var(--yellow);
+    --button-bg: var(--accent);
     --button-text: var(--ink);
   }
 }
@@ -88,7 +88,7 @@ button:focus-visible {
   top: -6.25rem;
   left: 1rem;
   padding: 0.75rem;
-  background: var(--yellow);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -108,6 +108,9 @@ button:focus-visible {
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: clamp(1.25rem, 2.1vw, 2rem);
   font-weight: 900;
   line-height: 0.87;
@@ -117,6 +120,17 @@ button:focus-visible {
 
 .brand__line {
   display: block;
+}
+
+/* Shown only by a holiday rule below. */
+.event-icon {
+  display: none;
+}
+
+.event-icon__image {
+  display: block;
+  width: 1.85em;
+  height: 1.85em;
 }
 
 .site-header__actions {
@@ -136,7 +150,7 @@ button:focus-visible {
 }
 
 .languages__link[aria-current="page"] {
-  background: var(--yellow);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -168,7 +182,7 @@ button:focus-visible {
   width: 93%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--yellow);
+  background: var(--accent);
 }
 
 .hero__image {
@@ -226,7 +240,7 @@ html[lang="el"] .hero__title {
 
 .button--accent {
   border: 0.1875rem solid var(--ink);
-  background: var(--yellow);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -270,7 +284,7 @@ html[lang="el"] .hero__title {
 }
 
 .service:nth-child(even) {
-  --tile-bg: var(--yellow);
+  --tile-bg: var(--accent);
 
   color: var(--ink);
 }
@@ -448,7 +462,7 @@ html[lang="el"] .hero__title {
 .contact-cta {
   padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter);
   border-top: var(--border);
-  background: var(--yellow);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -467,10 +481,10 @@ html[lang="el"] .hero__title {
   line-height: 1.4;
 }
 
-/* The block is yellow in both themes, so the button stays ink. */
+/* The block is accent-colored in both themes, so the button stays ink. */
 .contact-cta__button {
   background: var(--ink);
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .contact-cta__button:focus-visible {
@@ -499,6 +513,18 @@ html[lang="el"] .hero__title {
   min-height: 2.75rem;
   font-size: 1.375rem;
   font-weight: 700;
+}
+
+/* Holidays: html[data-event] is set by src/components/EventScript.astro
+   from the dates in src/lib/events.ts. A holiday changes only the accent
+   and shows its icon by the brand; light and dark still follow the system. */
+
+html[data-event="halloween"] {
+  --accent: oklch(72.5% 0.18 50deg); /* pumpkin orange */
+}
+
+html[data-event="halloween"] .event-icon--halloween {
+  display: block;
 }
 
 @media (width >= 106.25rem) { /* 1700px */
@@ -620,9 +646,9 @@ html[lang="el"] .hero__title {
     border-bottom: 0;
   }
 
-  /* Two columns: yellow tiles go diagonal, 2 and 3. */
+  /* Two columns: accent tiles go diagonal, 2 and 3. */
   .service:nth-child(3) {
-    --tile-bg: var(--yellow);
+    --tile-bg: var(--accent);
 
     color: var(--ink);
   }

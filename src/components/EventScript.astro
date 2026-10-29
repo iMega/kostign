@@ -1,0 +1,17 @@
+---
+import { events, timeZone } from "../lib/events";
+---
+
+<!-- Inline in <head>, before first paint: the accent never flashes from the
+     everyday color to the holiday one. -->
+<script is:inline define:vars={{ ranges: events, timeZone }}>
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", { timeZone, month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+    const part = (type) => parts.find((p) => p.type === type).value;
+    const today = `${part("month")}-${part("day")}`;
+    const event = ranges.find(({ from, to }) =>
+      from <= to ? today >= from && today <= to : today >= from || today <= to,
+    );
+    if (event) document.documentElement.dataset.event = event.id;
+  } catch {}
+</script>

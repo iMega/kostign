@@ -14,7 +14,7 @@ src/pages/         [lang]/index.astro → /ru/, /en/, /el/; index.astro — пе
 src/layouts/       общий шаблон: canonical, hreflang, JSON-LD, тема
 src/components/    блоки страницы; icons/ — встроенные SVG
 src/data/translations/  тексты по языкам; ru.json — эталон, ключи en/el сверяются при сборке
-src/lib/           языки (i18n.ts), контакты (contact.ts), JSON-LD (seo.ts)
+src/lib/           языки (i18n.ts), контакты (contact.ts), JSON-LD (seo.ts), праздники (events.ts)
 src/scripts/       клиентский скрипт: раскрывает раздел, на который ведёт ссылка
 src/styles/        стили: цвета OKLCH; тёмная тема по настройке системы (prefers-color-scheme)
 .stylelintrc.json  stylelint-config-standard, классы kebab-case или BEM
@@ -44,6 +44,26 @@ make preview    # готовая сборка из dist/
 `contact.hours` в `src/data/translations/*.json` и
 `openingHoursSpecification` в `src/lib/seo.ts`: при смене часов править
 оба места.
+
+## Праздничное оформление
+
+Список праздников и дат — только `src/lib/events.ts`: `id`, `from`, `to`
+в формате `MM-DD`, обе границы включительно. Если `from` > `to`, диапазон
+переходит через Новый год. Скрипт в `<head>` (`src/components/EventScript.astro`)
+берёт текущую дату по часовому поясу Europe/Nicosia и ставит
+`<html data-event="<id>">` до отрисовки страницы. Вне дат атрибута нет, и
+сайт выглядит как обычно.
+
+Новый праздник:
+
+1. запись в `events` (`src/lib/events.ts`);
+2. иконка в `src/components/icons/` и строка в `icons`
+   (`src/components/EventIcons.astro`): без неё не пройдёт проверка типов;
+3. в `src/styles/site.css`, раздел Holidays: `html[data-event="<id>"]` с
+   `--accent` и правило, показывающее `.event-icon--<id>`.
+
+Праздник меняет только `--accent` и иконку у названия; светлая и тёмная
+темы по-прежнему следуют настройке системы.
 
 ## Адрес сайта
 

@@ -1,5 +1,6 @@
 ---
 import { defaultLanguage, languagePath, languages, type Language } from "../lib/i18n";
+import EventScript from "../components/EventScript.astro";
 import { autoRepairJsonLd } from "../lib/seo";
 import "../styles/site.css";
 
@@ -32,6 +33,7 @@ const alternates = site && [
     {alternates && alternates.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={href} />)}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script type="application/ld+json" set:html={autoRepairJsonLd(site)} />
+    <EventScript />
   </head>
   <body>
     <slot />
