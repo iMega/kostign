@@ -104,7 +104,6 @@ button:focus-visible {
   gap: 1rem;
   min-height: 5.5rem;
   padding: 0.875rem var(--gutter);
-  border-bottom: var(--border);
 }
 
 .brand {
@@ -266,7 +265,7 @@ html[lang="el"] .hero__title {
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto 1fr;
   gap: 0.875rem;
   min-height: 16.875rem;
   padding: 1.5rem 1.75rem 1.875rem;
@@ -315,12 +314,6 @@ html[lang="el"] .hero__title {
   grid-column: 1 / -1;
   font-size: clamp(0.9375rem, 1.1vw, 1.125rem);
   line-height: 1.4;
-}
-
-.service__rule {
-  grid-column: 1 / -1;
-  height: 0.1875rem;
-  background: currentcolor;
 }
 
 .service:hover .service__label {
