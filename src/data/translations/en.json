@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "title": "Kostas Ignatiadis — car repair in Paphos",
+    "description": "Car servicing and repairs in Paphos."
+  },
+  "header": {
+    "skip": "Skip to content",
+    "languages": "Language"
+  },
+  "hero": {
+    "title": [
+      "Your car.",
+      "My work."
+    ],
+    "subtitle": "Car servicing and repairs in Paphos.",
+    "directions": "Get directions",
+    "owner": "Kostas Ignatiadis, the workshop owner"
+  },
+  "cards": {
+    "aria": "Main services",
+    "diagnostics": {
+      "title": "Diagnostics",
+      "text": "Codes, noises, leaks"
+    },
+    "maintenance": {
+      "title": "Servicing",
+      "text": "Oil, filters, belts"
+    },
+    "brakes": {
+      "title": "Brakes",
+      "text": "Pads, discs, calipers"
+    },
+    "suspension": {
+      "title": "Suspension",
+      "text": "Shocks, arms, hubs"
+    }
+  },
+  "works": {
+    "title": "What I can do for your car",
+    "groups": [
+      {
+        "id": "diagnostics",
+        "title": "Vehicle diagnostics",
+        "items": [
+          "Computer diagnostics and reading fault codes.",
+          "Finding the cause of hard starting and rough engine running.",
+          "Suspension and steering check.",
+          "Brake system check.",
+          "Tracking down unusual noises and vibrations.",
+          "Finding oil, coolant and other fluid leaks.",
+          "Battery and charging system check.",
+          "Cooling system check and finding the cause of overheating."
+        ]
+      },
+      {
+        "id": "maintenance",
+        "title": "Scheduled servicing",
+        "items": [
+          "Engine oil and oil filter replacement.",
+          "Air, cabin and fuel filter replacement.",
+          "Spark plug replacement.",
+          "Drive belt, pulley and tensioner replacement.",
+          "Brake fluid replacement.",
+          "Coolant replacement.",
+          "Power steering fluid replacement.",
+          "Checking fluid levels and the condition of consumables."
+        ]
+      },
+      {
+        "id": "brakes",
+        "title": "Brake system",
+        "items": [
+          "Brake pad and disc replacement.",
+          "Brake drum and drum brake shoe replacement.",
+          "Brake caliper servicing and replacement.",
+          "Brake cylinder and hose replacement.",
+          "Brake fluid replacement and system bleeding.",
+          "Parking brake cable replacement and adjustment.",
+          "Electronic parking brake servicing."
+        ]
+      },
+      {
+        "id": "suspension",
+        "title": "Suspension and hubs",
+        "items": [
+          "Shock absorber and strut replacement.",
+          "Spring, top mount and strut bearing replacement.",
+          "Control arm, ball joint and bushing replacement.",
+          "Anti-roll bar link and bushing replacement.",
+          "Hub and wheel bearing replacement."
+        ]
+      }
+    ],
+    "more": {
+      "title": "Other areas",
+      "groups": [
+        {
+          "id": "steering",
+          "title": "Steering",
+          "items": [
+            "Tie rod and tie rod end replacement.",
+            "Steering rack boot replacement.",
+            "Steering rack replacement.",
+            "Power steering pump and hose replacement.",
+            "Power steering fluid replacement and leak repair."
+          ]
+        },
+        {
+          "id": "engine",
+          "title": "Engine",
+          "items": [
+            "Gasket and oil seal replacement.",
+            "Oil leak repair.",
+            "Engine mount replacement.",
+            "Spark plug and ignition coil replacement.",
+            "Sensor and engine accessory replacement.",
+            "Timing belt and timing chain replacement.",
+            "Timing tensioner, pulley and guide replacement.",
+            "Crankcase ventilation servicing."
+          ]
+        },
+        {
+          "id": "cooling",
+          "title": "Cooling system",
+          "items": [
+            "Radiator and water pump replacement.",
+            "Thermostat replacement.",
+            "Coolant pipe, hose and connection replacement.",
+            "Expansion tank and cap replacement.",
+            "Cooling fan and fan control replacement.",
+            "Finding and fixing coolant leaks.",
+            "Coolant replacement and bleeding air from the system."
+          ]
+        },
+        {
+          "id": "transmission",
+          "title": "Clutch and transmission",
+          "items": [
+            "Clutch kit and release bearing replacement.",
+            "Flywheel replacement.",
+            "Clutch master and slave cylinder replacement.",
+            "Gearbox mount replacement.",
+            "Transmission oil seal replacement.",
+            "Manual and automatic gearbox oil change.",
+            "Differential and transfer case oil change.",
+            "Drive shaft, CV joint and boot replacement."
+          ]
+        },
+        {
+          "id": "fuel",
+          "title": "Intake and fuel system",
+          "items": [
+            "Finding and fixing air leaks.",
+            "Intake pipe and hose replacement.",
+            "Throttle body cleaning and replacement.",
+            "Fuel pump and filter replacement.",
+            "Fuel line, hose and seal replacement.",
+            "Intake and fuel system sensor replacement."
+          ]
+        },
+        {
+          "id": "exhaust",
+          "title": "Exhaust system",
+          "items": [
+            "Silencer and resonator replacement.",
+            "Exhaust pipe and joint replacement.",
+            "Gasket, clamp and hanger replacement.",
+            "Sealing leaking joints.",
+            "Oxygen sensor replacement."
+          ]
+        },
+        {
+          "id": "electrics",
+          "title": "Electrics",
+          "items": [
+            "Battery replacement.",
+            "Starter and alternator testing.",
+            "Starter and alternator replacement.",
+            "Bulb, fuse and relay replacement.",
+            "Tracing wiring faults.",
+            "Repairing contacts and connectors.",
+            "Sensor and electric actuator replacement."
+          ]
+        },
+        {
+          "id": "heating",
+          "title": "Heating and ventilation",
+          "items": [
+            "Cabin filter replacement.",
+            "Blower motor replacement.",
+            "Blower resistor or speed controller replacement.",
+            "Heater flap actuator repair.",
+            "Heater core replacement.",
+            "Fixing heating system leaks."
+          ]
+        },
+        {
+          "id": "body",
+          "title": "Doors, windows and auxiliary mechanisms",
+          "items": [
+            "Window regulator replacement and repair.",
+            "Door lock, actuator and handle replacement.",
+            "Wiper mechanism and motor replacement.",
+            "Washer pump, hose and nozzle replacement.",
+            "Mirror and mirror motor replacement."
+          ]
+        },
+        {
+          "id": "inspection",
+          "title": "Pre-purchase and pre-trip checks",
+          "items": [
+            "Pre-purchase inspection.",
+            "Check before a long trip.",
+            "Brake, suspension and steering check.",
+            "Lights, wipers and washers check.",
+            "Inspection for leaks and visible damage.",
+            "Pre-MOT check and repairs."
+          ]
+        }
+      ]
+    }
+  },
+  "cta": {
+    "title": "Not sure what is wrong?",
+    "text": "Describe what is happening with the car: when the noise appears, what has changed in how it runs, or which warning light has come on."
+  },
+  "contact": {
+    "call": "Call us",
+    "hours": "Mon–Fri 08:00–17:00 · Sat 08:00–13:00",
+    "map": "Address on the map"
+  }
+}

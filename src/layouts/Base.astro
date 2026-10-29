@@ -1,34 +1,39 @@
 ---
+import { defaultLanguage, languagePath, languages, type Language } from "../lib/i18n";
+import { autoRepairJsonLd } from "../lib/seo";
+import "../styles/site.css";
+
 interface Props {
+  lang: Language;
   title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
-// Undefined when the build has no SITE_URL (e.g. a local run).
-const canonical = Astro.site && new URL(Astro.url.pathname, Astro.site);
+const { lang, title, description } = Astro.props;
+// Undefined when the build has no SITE_URL (e.g. a local run): then the
+// page has no canonical and no alternate links.
+const site = Astro.site;
+const canonical = site && new URL(Astro.url.pathname, site);
+const alternates = site && [
+  ...Object.keys(languages).map((code) => [code, new URL(languagePath(code as Language), site)]),
+  ["x-default", new URL(languagePath(defaultLanguage), site)],
+];
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
     <title>{title}</title>
+    <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
+    {alternates && alternates.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={autoRepairJsonLd(site)} />
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    font-family: system-ui, sans-serif;
-    color: #222;
-    background: #fafafa;
-  }
-</style>

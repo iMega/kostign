@@ -1,0 +1,37 @@
+---
+import { getTranslations, type Language } from "../lib/i18n";
+import Brake from "./icons/Brake.astro";
+import Engine from "./icons/Engine.astro";
+import Shock from "./icons/Shock.astro";
+import Tools from "./icons/Tools.astro";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+// id is the translation key under cards and the id of the matching group
+// in the full list (Works.astro) the card scrolls to.
+const cards = [
+  { id: "diagnostics", Icon: Engine },
+  { id: "maintenance", Icon: Tools },
+  { id: "brakes", Icon: Brake },
+  { id: "suspension", Icon: Shock },
+] as const;
+---
+
+<nav class="services" aria-label={t.cards.aria}>
+  {
+    cards.map(({ id, Icon }, i) => (
+      <a class="service" href={`#${id}`}>
+        <span class="service__number">{String(i + 1).padStart(2, "0")}</span>
+        <Icon />
+        <span class="service__label">{t.cards[id].title}</span>
+        <span class="service__text">{t.cards[id].text}</span>
+        <span class="service__rule" />
+      </a>
+    ))
+  }
+</nav>

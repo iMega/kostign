@@ -1,0 +1,49 @@
+---
+import { contact } from "../lib/contact";
+import { getTranslations, type Language } from "../lib/i18n";
+import Arrow from "./icons/Arrow.astro";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<section class="hero" aria-labelledby="headline">
+  <div class="hero__portrait">
+    <div class="hero__circle"></div>
+    <img
+      class="hero__image"
+      src="/assets/owner-960.webp"
+      srcset="/assets/owner-480.webp 480w, /assets/owner-960.webp 960w"
+      sizes="(width <= 47.5rem) 100vw, 50vw"
+      width="1254"
+      height="1254"
+      alt={t.hero.owner}
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+  <div class="hero__intro">
+    <h1 class="hero__title" id="headline">
+      {
+        t.hero.title.map((line, i) => (
+          <>
+            {i > 0 && <br />}
+            {line}
+          </>
+        ))
+      }
+    </h1>
+    <p class="hero__subtitle">{t.hero.subtitle}</p>
+    <div class="hero__actions">
+      <a class="button button--accent" href={contact.phoneHref}>{t.contact.call}</a>
+      <a class="route-link" href={contact.mapUrl} target="_blank" rel="noopener">
+        <span>{t.hero.directions}</span>
+        <Arrow />
+      </a>
+    </div>
+  </div>
+</section>

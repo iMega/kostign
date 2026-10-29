@@ -1,0 +1,35 @@
+---
+import { getTranslations, languagePath, languages, type Language } from "../lib/i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<header class="site-header">
+  <a class="brand" href={languagePath(lang)}>
+    <span class="brand__line">Kostas</span>
+    <span class="brand__line">Ignatiadis</span>
+  </a>
+  <div class="site-header__actions">
+    <nav class="languages" aria-label={t.header.languages}>
+      {
+        Object.values(languages).map(({ code, name }) => (
+          <a
+            class="languages__link"
+            href={languagePath(code)}
+            hreflang={code}
+            lang={code}
+            title={name}
+            aria-current={code === lang ? "page" : undefined}
+          >
+            {code.toUpperCase()}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
