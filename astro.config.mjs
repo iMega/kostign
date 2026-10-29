@@ -12,5 +12,8 @@ export default defineConfig({
   output: "static",
   build: {
     format: "directory",
+    // The stylesheet is a few KiB: inline it so it does not block the
+    // first render with an extra request.
+    inlineStylesheets: "always",
   },
 });

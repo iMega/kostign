@@ -16,9 +16,9 @@ const t = getTranslations(lang);
     <div class="hero__circle"></div>
     <img
       class="hero__image"
-      src="/assets/owner-960.webp"
-      srcset="/assets/owner-480.webp 480w, /assets/owner-960.webp 960w"
-      sizes="(width <= 47.5rem) 100vw, 50vw"
+      src="/assets/owner-640.webp"
+      srcset="/assets/owner-480.webp 480w, /assets/owner-640.webp 640w, /assets/owner-960.webp 960w"
+      sizes="(width <= 47.5rem) clamp(16.25rem, 74vw, 27.5rem), min(50vw, 38.75rem)"
       width="1254"
       height="1254"
       alt={t.hero.owner}
