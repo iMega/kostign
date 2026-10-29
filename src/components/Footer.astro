@@ -1,0 +1,21 @@
+---
+import { contact } from "../lib/contact";
+import { getTranslations, type Language } from "../lib/i18n";
+import Arrow from "./icons/Arrow.astro";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+---
+
+<footer class="site-footer">
+  <a href={contact.mapUrl} target="_blank" rel="noopener" title={t.contact.map}>{contact.address}</a>
+  <span>{t.contact.hours}</span>
+  <a class="site-footer__phone" href={contact.phoneHref}>
+    <span>{contact.phone}</span>
+    <Arrow />
+  </a>
+</footer>

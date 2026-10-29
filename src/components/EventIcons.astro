@@ -1,0 +1,21 @@
+---
+import { events, type EventId } from "../lib/events";
+import Pumpkin from "./icons/Pumpkin.astro";
+
+const icons: Record<EventId, typeof Pumpkin> = {
+  halloween: Pumpkin,
+};
+---
+
+<!-- Every event's icon is in the HTML, hidden; CSS shows the one matching
+     html[data-event]. -->
+{
+  events.map(({ id }) => {
+    const Icon = icons[id];
+    return (
+      <span class={`event-icon event-icon--${id}`}>
+        <Icon />
+      </span>
+    );
+  })
+}

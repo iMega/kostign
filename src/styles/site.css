@@ -1,0 +1,705 @@
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  --accent: oklch(88.48% 0.1816 94.9deg); /* yellow; holidays swap it, see Holidays */
+  --ink: oklch(17.76% 0 0deg);
+  --paper: oklch(100% 0 0deg);
+  --chalk: oklch(97.83% 0.004 106.47deg);
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --line: var(--fg);
+  --button-bg: var(--ink);
+  --button-text: var(--accent);
+  --footer-bg: oklch(13.98% 0 0deg);
+  --footer-text: var(--paper);
+  --border: 0.1875rem solid var(--line); /* 3px */
+  --gutter: 2.7vw;
+
+  scroll-behavior: smooth;
+}
+
+/* Dark follows the system setting only; the page has no theme switch. */
+@media (prefers-color-scheme: dark) {
+  html {
+    --bg: var(--ink);
+    --fg: var(--chalk);
+    --button-bg: var(--accent);
+    --button-text: var(--ink);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Arial, Helvetica, system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:hover,
+button:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3125rem;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 0.1875rem solid var(--fg);
+  outline-offset: 0.3125rem;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 1.4375rem;
+  height: 1.4375rem;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  top: -6.25rem;
+  left: 1rem;
+  padding: 0.75rem;
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.skip-link:focus {
+  top: 0.625rem;
+}
+
+/* Header */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 5.5rem;
+  padding: 0.875rem var(--gutter);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: clamp(1.25rem, 2.1vw, 2rem);
+  font-weight: 900;
+  line-height: 0.87;
+  letter-spacing: -0.0625rem;
+  text-transform: uppercase;
+}
+
+.brand__line {
+  display: block;
+}
+
+/* Shown only by a holiday rule below. */
+.event-icon {
+  display: none;
+}
+
+.event-icon__image {
+  display: block;
+  width: 1.85em;
+  height: 1.85em;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.languages {
+  display: flex;
+}
+
+.languages__link {
+  padding: 0.5625rem 0.5rem;
+  font-weight: 800;
+}
+
+.languages__link[aria-current="page"] {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 33.4375rem;
+  overflow: hidden;
+  border-bottom: var(--border);
+}
+
+.hero__portrait {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__circle {
+  position: absolute;
+  z-index: -1;
+  top: 2%;
+  left: 3.5%;
+  width: 93%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 38.75rem;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+.hero__intro {
+  align-self: center;
+  min-width: 0;
+  padding: 3rem 1.75rem 3rem 0.75rem;
+}
+
+.hero__title {
+  margin: 0 0 1.125rem;
+  font-size: clamp(2.625rem, 5vw, 5.75rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.055em;
+}
+
+html[lang="el"] .hero__title {
+  font-size: clamp(2.25rem, 4.2vw, 4.75rem);
+}
+
+.hero__subtitle {
+  max-width: 35em;
+  margin: 0 0 1.625rem;
+  font-size: clamp(1.125rem, 1.75vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.375rem;
+  padding: 1rem 2.25rem;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  font-weight: 800;
+}
+
+.button--accent {
+  border: 0.1875rem solid var(--ink);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.route-link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 3rem;
+  padding: 0.5rem 0;
+  font-size: clamp(1.0625rem, 1.5vw, 1.5rem);
+  font-weight: 700;
+}
+
+/* Services */
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.service {
+  --tile-bg: var(--bg);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 0.875rem;
+  min-height: 16.875rem;
+  padding: 1.5rem 1.75rem 1.875rem;
+  border-right: var(--border);
+  background: var(--tile-bg);
+  color: var(--fg);
+}
+
+.service:hover {
+  text-decoration: none;
+}
+
+.service:last-child {
+  border-right: 0;
+}
+
+.service:nth-child(even) {
+  --tile-bg: var(--accent);
+
+  color: var(--ink);
+}
+
+.service__number {
+  margin-bottom: clamp(0.5rem, 2.5vw, 2.5rem);
+  font-size: clamp(3rem, 6.4vw, 6.25rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.08em;
+}
+
+.service__icon {
+  place-self: center end;
+  width: min(100%, 8.125rem);
+  height: auto;
+}
+
+.service__label {
+  grid-column: 1 / -1;
+  font-size: clamp(1.0625rem, 1.7vw, 1.6875rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+
+.service__text {
+  grid-column: 1 / -1;
+  font-size: clamp(0.9375rem, 1.1vw, 1.125rem);
+  line-height: 1.4;
+}
+
+.service:hover .service__label {
+  text-decoration: underline;
+  text-underline-offset: 0.3125rem;
+}
+
+/* Full list of works */
+
+.works {
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter);
+  border-top: var(--border);
+}
+
+.works__title {
+  max-width: 20em;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+/* Main areas. Columns, not a grid: groups differ in length and pack
+   tighter this way; break-inside keeps every group whole in one column. */
+.works__main {
+  column-count: 2;
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.work-group {
+  padding-bottom: 3.5rem;
+  break-inside: avoid;
+  scroll-margin-top: 1.5rem;
+}
+
+.work-group__title {
+  margin: 0 0 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: var(--border);
+  font-size: clamp(1.375rem, 1.9vw, 1.875rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.work-group__list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+
+.work-group__list li + li {
+  margin-top: 0.25rem;
+}
+
+/* Other areas: collapsed sections, one row each. */
+
+.works__more-title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.375rem, 1.9vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.works__more {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  column-gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.work-more {
+  border-bottom: var(--border);
+  scroll-margin-top: 1.5rem;
+}
+
+/* No line under the last row: the contact block below has its own. In two
+   columns the last row is the last item and, when it starts the row (odd
+   position), the one before it. */
+.work-more:last-child,
+.work-more:nth-last-child(2):nth-child(odd) {
+  border-bottom: 0;
+}
+
+.work-more__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.work-more__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Plus that turns into a minus when open. */
+.work-more__summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.work-more[open] .work-more__summary::after {
+  content: "−";
+}
+
+.work-more__summary:focus-visible {
+  outline: 0.1875rem solid var(--fg);
+  outline-offset: 0.3125rem;
+}
+
+.work-more__title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.work-more__list {
+  padding-bottom: 1.25rem;
+}
+
+.work-more__summary:hover .work-more__title {
+  text-decoration: underline;
+  text-underline-offset: 0.3125rem;
+}
+
+/* Closing call to contact */
+
+.contact-cta {
+  padding: clamp(2.5rem, 5vw, 4.5rem) var(--gutter);
+  border-top: var(--border);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.contact-cta__title {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.contact-cta__text {
+  max-width: 40em;
+  margin: 0 0 2rem;
+  font-size: clamp(1.125rem, 1.6vw, 1.5rem);
+  line-height: 1.4;
+}
+
+/* The block is accent-colored in both themes, so the button stays ink. */
+.contact-cta__button {
+  background: var(--ink);
+  color: var(--accent);
+}
+
+.contact-cta__button:focus-visible {
+  outline-color: var(--ink);
+}
+
+/* Footer */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  min-height: 4.5rem;
+  padding: 1.125rem var(--gutter);
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  font-size: 1.125rem;
+}
+
+.site-footer__phone {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 2.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+/* Holidays: html[data-event] is set by src/components/EventScript.astro
+   from the dates in src/lib/events.ts. A holiday changes only the accent
+   and shows its icon by the brand; light and dark still follow the system. */
+
+html[data-event="halloween"] {
+  --accent: oklch(72.5% 0.18 50deg); /* pumpkin orange */
+}
+
+html[data-event="halloween"] .event-icon--halloween {
+  display: block;
+}
+
+@media (width >= 106.25rem) { /* 1700px */
+  body {
+    max-width: 112.5rem;
+    margin: auto;
+    border-inline: var(--border);
+  }
+}
+
+@media (width <= 62.5rem) and (width > 47.5rem) { /* 761–1000px */
+  .hero {
+    min-height: 28.75rem;
+  }
+
+  .hero__intro {
+    padding: 2.25rem 1.125rem 2.25rem 0.625rem;
+  }
+
+  .service {
+    min-height: 14.375rem;
+    padding: 1.25rem 1rem;
+  }
+}
+
+@media (width <= 47.5rem) { /* 760px */
+  html {
+    --gutter: 1.25rem;
+  }
+
+  .site-header {
+    min-height: 4.75rem;
+    padding-block: 0.75rem;
+  }
+
+  .brand {
+    font-size: 1.4375rem;
+  }
+
+  .site-header__actions {
+    gap: 0.375rem;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .hero__portrait {
+    height: clamp(16.25rem, 74vw, 27.5rem);
+  }
+
+  .hero__image {
+    height: 100%;
+    object-position: center bottom;
+  }
+
+  .hero__circle {
+    top: 0;
+    left: 50%;
+    width: 94%;
+    max-width: 32.5rem;
+    transform: translateX(-50%);
+  }
+
+  .hero__intro {
+    width: 100%;
+    padding: 0.625rem var(--gutter) 1.5rem;
+  }
+
+  .hero__title {
+    margin-bottom: 0.75rem;
+    font-size: clamp(2rem, 9vw, 4.25rem);
+  }
+
+  html[lang="el"] .hero__title {
+    font-size: clamp(1.75rem, 7.6vw, 3.75rem);
+  }
+
+  .hero__subtitle {
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+    line-height: 1.35;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.625rem;
+  }
+
+  .button {
+    width: 100%;
+    padding: 0.9375rem 1.375rem;
+    font-size: 1.4375rem;
+  }
+
+  .route-link {
+    font-size: 1.25rem;
+  }
+
+  .services {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service {
+    gap: 0.75rem;
+    min-height: 11.875rem;
+    padding: 1rem 1.125rem 1.25rem;
+    border-bottom: var(--border);
+  }
+
+  .service:nth-child(even) {
+    border-right: 0;
+  }
+
+  .service:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+
+  /* Two columns: accent tiles go diagonal, 2 and 3. */
+  .service:nth-child(3) {
+    --tile-bg: var(--accent);
+
+    color: var(--ink);
+  }
+
+  .service:nth-child(4) {
+    --tile-bg: var(--bg);
+
+    color: var(--fg);
+  }
+
+  .service__number {
+    font-size: clamp(2.625rem, 12vw, 4.375rem);
+  }
+
+  .service__icon {
+    width: clamp(3.5rem, 18vw, 6.25rem);
+  }
+
+  .service__label {
+    font-size: clamp(0.875rem, 3.7vw, 1.4375rem);
+  }
+
+  .service__text {
+    font-size: clamp(0.8125rem, 3.4vw, 1rem);
+  }
+
+  .works__main {
+    column-count: 1;
+  }
+
+  .work-group {
+    padding-bottom: 2.75rem;
+  }
+
+  .works__more {
+    grid-template-columns: 1fr;
+  }
+
+  /* One column: only the last item ends the list. */
+  .work-more:nth-last-child(2):nth-child(odd) {
+    border-bottom: var(--border);
+  }
+
+  .work-group__list {
+    font-size: 1.0625rem;
+  }
+
+  .site-footer {
+    font-size: 0.875rem;
+  }
+
+  .site-footer__phone {
+    font-size: 1.125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

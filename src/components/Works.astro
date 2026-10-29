@@ -1,0 +1,54 @@
+---
+import { getTranslations, type Language } from "../lib/i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+const { more } = t.works;
+---
+
+<section class="works" aria-labelledby="works-title">
+  <h2 class="works__title" id="works-title">{t.works.title}</h2>
+
+  <!-- The four main areas, open: the cards above scroll here. -->
+  <div class="works__main">
+    {
+      t.works.groups.map(({ id, title, items }) => (
+        <section class="work-group" id={id} aria-labelledby={`${id}-title`}>
+          <h3 class="work-group__title" id={`${id}-title`}>
+            {title}
+          </h3>
+          <ul class="work-group__list">
+            {items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <p class="works__more-title">{more.title}</p>
+
+  <!-- Collapsed, but the text is in the HTML: <details> opens without
+       JavaScript; site.ts only opens the one a link (/ru/#engine) points to. -->
+  <div class="works__more">
+    {
+      more.groups.map(({ id, title, items }) => (
+        <details class="work-more" id={id}>
+          <summary class="work-more__summary">
+            <h3 class="work-more__title">{title}</h3>
+          </summary>
+          <ul class="work-group__list work-more__list">
+            {items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </details>
+      ))
+    }
+  </div>
+</section>

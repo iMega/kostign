@@ -1,7 +1,21 @@
 ---
-import Base from "../layouts/Base.astro";
+import { defaultLanguage, languagePath } from "../lib/i18n";
+
+// The server needs index.html at the root: it sends visitors to the
+// default language.
+const to = languagePath(defaultLanguage);
 ---
 
-<Base title="Coming soon">
-  <h1>Coming soon...</h1>
-</Base>
+<!doctype html>
+<html lang={defaultLanguage}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${to}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={to} />
+    <title>Kostas Ignatiadis</title>
+  </head>
+  <body>
+    <a href={to}>Kostas Ignatiadis</a>
+  </body>
+</html>
