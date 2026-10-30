@@ -8,7 +8,7 @@
 export const timeZone = "Europe/Nicosia";
 
 export const events = [
-    // { id: "halloween", from: "10-29", to: "11-01" }
+    { id: "halloween", from: "10-29", to: "11-01" }
 ] as const;
 
 export type EventId = (typeof events)[number]["id"];
