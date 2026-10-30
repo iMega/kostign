@@ -12,9 +12,9 @@ const t = getTranslations(lang);
 ---
 
 <footer class="site-footer">
-  <a href={contact.mapUrl} target="_blank" rel="noopener" title={t.contact.map}>{contact.address}</a>
+  <a href={contact.mapUrl} target="_blank" rel="noopener" title={t.contact.map} data-track="directions" data-track-location="footer">{contact.address}</a>
   <span>{t.contact.hours}</span>
-  <a class="site-footer__phone" href={contact.phoneHref}>
+  <a class="site-footer__phone" href={contact.phoneHref} data-track="call" data-track-location="footer">
     <span>{contact.phone}</span>
     <Arrow />
   </a>

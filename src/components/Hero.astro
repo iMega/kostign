@@ -39,8 +39,8 @@ const t = getTranslations(lang);
     </h1>
     <p class="hero__subtitle">{t.hero.subtitle}</p>
     <div class="hero__actions">
-      <a class="button button--accent" href={contact.phoneHref}>{t.contact.call}</a>
-      <a class="route-link" href={contact.mapUrl} target="_blank" rel="noopener">
+      <a class="button button--accent" href={contact.phoneHref} data-track="call" data-track-location="hero">{t.contact.call}</a>
+      <a class="route-link" href={contact.mapUrl} target="_blank" rel="noopener" data-track="directions" data-track-location="hero">
         <span>{t.hero.directions}</span>
         <Arrow />
       </a>

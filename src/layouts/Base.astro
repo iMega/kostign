@@ -1,6 +1,7 @@
 ---
 import { defaultLanguage, languagePath, languages, type Language } from "../lib/i18n";
 import EventScript from "../components/EventScript.astro";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import { autoRepairJsonLd } from "../lib/seo";
 import "../styles/site.css";
 
@@ -25,6 +26,7 @@ const alternates = site && [
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <GoogleAnalytics />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <title>{title}</title>

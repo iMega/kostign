@@ -1,0 +1,23 @@
+---
+// GA4. GOOGLE_ANALYTICS_MEASUREMENT_ID is set by CI for production only;
+// empty (a local run, test.<domain>) leaves the page without the tag.
+// gtag.js loads async: it neither blocks parsing nor the first render.
+const measurementId = process.env.GOOGLE_ANALYTICS_MEASUREMENT_ID ?? "";
+const src = new URL("https://www.googletagmanager.com/gtag/js");
+
+src.searchParams.set("id", measurementId);
+---
+
+{measurementId && (
+  <>
+    <script async src={src.toString()}></script>
+    <script is:inline define:vars={{ measurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() {
+        window.dataLayer.push(arguments);
+      };
+      window.gtag("js", new Date());
+      window.gtag("config", measurementId);
+    </script>
+  </>
+)}

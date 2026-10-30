@@ -26,9 +26,11 @@ jobs:
           cache: npm
 
       # Site address from repository variables, per target environment.
+      # GA4 only in production: test.<domain> does not skew the statistics.
       - name: Build
         env:
           SITE_URL: ${{ github.event_name == 'push' && vars.SITE_URL || vars.SITE_TEST_URL }}
+          GOOGLE_ANALYTICS_MEASUREMENT_ID: ${{ github.event_name == 'push' && 'G-HYBY4ETL8D' || '' }}
         run: make build
 
       - uses: actions/upload-artifact@v4
