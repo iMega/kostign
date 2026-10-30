@@ -6,12 +6,19 @@ import { events, timeZone } from "../lib/events";
      everyday color to the holiday one. -->
 <script is:inline define:vars={{ ranges: events, timeZone }}>
   try {
-    const parts = new Intl.DateTimeFormat("en-CA", { timeZone, month: "2-digit", day: "2-digit" }).formatToParts(new Date());
+    const parts = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(new Date());
     const part = (type) => parts.find((p) => p.type === type).value;
     const today = `${part("month")}-${part("day")}`;
-    const event = ranges.find(({ from, to }) =>
-      from <= to ? today >= from && today <= to : today >= from || today <= to,
-    );
+    // Orthodox Easter: the Julian date plus 13 days, right for 1900–2099.
+    const year = Number(part("year"));
+    const d = (19 * (year % 19) + 15) % 30;
+    const e = (2 * (year % 4) + 4 * (year % 7) - d + 34) % 7;
+    const easter = Date.UTC(year, Math.floor((d + e + 114) / 31) - 1, ((d + e + 114) % 31) + 14);
+    const fromEaster = (days) => new Date(easter + days * 864e5).toISOString().slice(5, 10);
+    const event = ranges.find((range) => {
+      const [from, to] = range.easter ? range.easter.map(fromEaster) : [range.from, range.to];
+      return from <= to ? today >= from && today <= to : today >= from || today <= to;
+    });
     if (event) document.documentElement.dataset.event = event.id;
   } catch {}
 </script>

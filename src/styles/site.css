@@ -512,10 +512,57 @@ html[lang="el"] .hero__title {
    from the dates in src/lib/events.ts. A holiday changes only the accent
    and shows its icon by the brand; light and dark still follow the system. */
 
+html[data-event="christmas"] {
+  --accent: oklch(55% 0.16 15deg); /* wine red: darker cuts contrast with the ink text on it */
+}
+
+html[data-event="green-monday"] {
+  --accent: oklch(86% 0.19 125deg); /* spring green */
+}
+
+html[data-event="greek-independence"],
+html[data-event="ochi-day"] {
+  --accent: oklch(68% 0.15 255deg); /* Greek flag blue */
+}
+
+html[data-event="national-day"] {
+  --accent: oklch(76% 0.13 120deg); /* laurel green */
+}
+
+html[data-event="easter"] {
+  --accent: oklch(66% 0.21 28deg); /* red egg */
+}
+
+html[data-event="labour-day"] {
+  --accent: oklch(74% 0.16 0deg); /* May flowers */
+}
+
+html[data-event="kataklysmos"] {
+  --accent: oklch(78% 0.12 215deg); /* sea blue */
+}
+
+html[data-event="assumption"] {
+  --accent: oklch(80% 0.14 70deg); /* candlelight */
+}
+
+html[data-event="independence-day"] {
+  --accent: oklch(70% 0.14 60deg); /* Cyprus flag copper */
+}
+
 html[data-event="halloween"] {
   --accent: oklch(72.5% 0.18 50deg); /* pumpkin orange */
 }
 
+html[data-event="christmas"] .event-icon--christmas,
+html[data-event="green-monday"] .event-icon--green-monday,
+html[data-event="greek-independence"] .event-icon--greek-independence,
+html[data-event="national-day"] .event-icon--national-day,
+html[data-event="easter"] .event-icon--easter,
+html[data-event="labour-day"] .event-icon--labour-day,
+html[data-event="kataklysmos"] .event-icon--kataklysmos,
+html[data-event="assumption"] .event-icon--assumption,
+html[data-event="independence-day"] .event-icon--independence-day,
+html[data-event="ochi-day"] .event-icon--ochi-day,
 html[data-event="halloween"] .event-icon--halloween {
   display: block;
 }

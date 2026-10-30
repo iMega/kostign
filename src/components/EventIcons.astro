@@ -1,8 +1,27 @@
 ---
 import { events, type EventId } from "../lib/events";
+import Candle from "./icons/Candle.astro";
+import Cyprus from "./icons/Cyprus.astro";
+import Egg from "./icons/Egg.astro";
+import Flower from "./icons/Flower.astro";
+import GreekFlag from "./icons/GreekFlag.astro";
+import Kite from "./icons/Kite.astro";
+import Laurel from "./icons/Laurel.astro";
 import Pumpkin from "./icons/Pumpkin.astro";
+import Tree from "./icons/Tree.astro";
+import Waves from "./icons/Waves.astro";
 
 const icons: Record<EventId, typeof Pumpkin> = {
+  christmas: Tree,
+  "green-monday": Kite,
+  "greek-independence": GreekFlag,
+  "national-day": Laurel,
+  easter: Egg,
+  "labour-day": Flower,
+  kataklysmos: Waves,
+  assumption: Candle,
+  "independence-day": Cyprus,
+  "ochi-day": GreekFlag,
   halloween: Pumpkin,
 };
 ---
